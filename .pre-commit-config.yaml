@@ -14,7 +14,7 @@ repos:
           additional_dependencies:
             - 'pyyaml'
           args: 
-            - --max-line-length=80
+            - --max-line-length=88
             - --ignore-imports=yes
             - -d duplicate-code
             - --disable=E0401,R0201
