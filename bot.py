@@ -18,14 +18,14 @@ class Bot(commands.Bot):
 
     def __init__(self):
         # Initialise our Bot with our access token
-        credentials_object: CredentialManager = load_oauth_config()
-        bot_settings_object: BotSettings = load_bot_config()
-        self.bot_name = bot_settings_object.bot_name
-        self.bot_version = bot_settings_object.bot_version
+        self.credentials_object: CredentialManager = load_oauth_config()
+        self.bot_settings_object: BotSettings = load_bot_config()
+        self.bot_name = self.bot_settings_object.bot_name
+        self.bot_version = self.bot_settings_object.bot_version
         super().__init__(
-            token=credentials_object.oauth_token,
-            prefix=bot_settings_object.bot_command_prefix,
-            initial_channels=[credentials_object.channel_name],
+            token=self.credentials_object.oauth_token,
+            prefix=self.bot_settings_object.bot_command_prefix,
+            initial_channels=[self.credentials_object.channel_name],
         )
 
     async def event_ready(self):
@@ -53,18 +53,22 @@ class Bot(commands.Bot):
         """
         Command to print stream uptime
         """
-        stream_info = await self.fetch_streams(None, None, ["accountsbroke"])
-        stream_time = stream_info[0].started_at
-        start_time = stream_time.replace(tzinfo=None)
-        current_time = datetime.datetime.now()
-        time_difference = (current_time - start_time).seconds
-        days = divmod(time_difference, 86400)
-        hours = divmod(days[1], 3600)
-        minutes = divmod(hours[1], 60)
-        time_string = f"""
-            {days[0]} days, 
-            {hours[0]} hours, 
-            {minutes[0]} minutes, 
-            {minutes[1]} seconds
-        """
-        await ctx.send(f"Uptime: {time_string}!")
+        stream_info = await self.fetch_streams(
+            None, None, [self.credentials_object.channel_name]
+        )
+        if len(stream_info) > 0:
+            start_time = stream_info[0].started_at.replace(tzinfo=None)
+            current_time = datetime.datetime.now()
+            time_difference = (current_time - start_time).seconds
+            days = divmod(time_difference, 86400)
+            hours = divmod(days[1], 3600)
+            minutes = divmod(hours[1], 60)
+            time_string = f"""
+                {days[0]} days, 
+                {hours[0]} hours, 
+                {minutes[0]} minutes, 
+                {minutes[1]} seconds
+            """
+            await ctx.send(f"Uptime: {time_string}!")
+        else:
+            await ctx.send("Uptime: Not Live!")
