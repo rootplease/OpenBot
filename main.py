@@ -4,7 +4,7 @@ OpenBot v0.1 Author RootPlease
 https://github.com/rootplease/OpenBot
 """
 
-from config_manager import load_oauth_config, CredentialManager
+from config.config_manager import load_oauth_config, CredentialManager
 
 
 def main():

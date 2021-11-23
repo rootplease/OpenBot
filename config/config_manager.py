@@ -24,6 +24,6 @@ def load_oauth_config(yaml_object) -> CredentialManager:
     """
     Function to load oauth configuration information from config.yaml
     """
-    yaml.add_path_resolver("!oauth", ["OAUTH"], dict)
+    yaml.add_path_resolver("!oauth", ["oauth"], dict)
     data = yaml.load(yaml_object, Loader=yaml.FullLoader)
-    return data["OAUTH"]
+    return data["oauth"]

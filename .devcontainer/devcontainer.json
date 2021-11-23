@@ -23,6 +23,11 @@
         "files.autoSave": "afterDelay",
         "editor.rulers": [
             88
+        ],
+        "python.linting.pylintArgs": [
+            "--max-line-length=80",
+            "- --ignore-imports=yes",
+            "- -d duplicate-code"
         ]
     },
     "postCreateCommand": "bash -i /workspace/.devcontainer/postCommands.sh",
