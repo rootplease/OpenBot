@@ -10,3 +10,6 @@
 
 #ignore config.yaml files
 config.yaml
+#ignore pycache
+__pycache__
+*.pyc
