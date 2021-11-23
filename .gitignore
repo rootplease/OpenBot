@@ -7,3 +7,6 @@
 # Unignore all dirs
 !*/
 !Dockerfile
+
+#ignore config.yaml files
+config.yaml

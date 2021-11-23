@@ -20,9 +20,11 @@
         "python.linting.enabled": true,
         "python.formatting.provider": "black",
         "git.autofetch": true,
-        "files.autoSave": "afterDelay"
+        "files.autoSave": "afterDelay",
+        "editor.rulers": [
+            88
+        ]
     },
     "postCreateCommand": "bash -i /workspace/.devcontainer/postCommands.sh",
     "remoteUser": "dev"
 }
-2

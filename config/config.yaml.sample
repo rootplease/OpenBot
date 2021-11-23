@@ -1,0 +1,6 @@
+oauth:
+  bot_username: "string"
+  channel_name: "string"
+  oauth_token: "string"
+  # Only accept True or False
+

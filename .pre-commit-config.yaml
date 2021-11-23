@@ -11,6 +11,8 @@ repos:
       rev: v2.11.1
       hooks:
         - id: pylint
+          additional_dependencies:
+            - 'pyyaml'
           args: 
             - --max-line-length=80
             - --ignore-imports=yes
