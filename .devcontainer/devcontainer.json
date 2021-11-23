@@ -7,13 +7,22 @@
         "ms-python.python",
         "eamodio.gitlens"
     ],
-    "forwardPorts": [443,80],
+    "forwardPorts": [
+        443,
+        80
+    ],
     "settings": {
         "editor.tabSize": 4,
         "files.eol": "\n",
-        "git.postCommitCommand": "push"
-      },
-      "postCreateCommand": "bash -i /workspace/.devcontainer/postCommands.sh",
-      "remoteUser": "dev"      
-  }
+        "git.postCommitCommand": "push",
+        "editor.formatOnSave": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.enabled": true,
+        "python.formatting.provider": "black",
+        "git.autofetch": true,
+        "files.autoSave": "afterDelay"
+    },
+    "postCreateCommand": "bash -i /workspace/.devcontainer/postCommands.sh",
+    "remoteUser": "dev"
+}
 2
