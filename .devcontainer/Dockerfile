@@ -7,4 +7,4 @@ USER dev
 WORKDIR /home/dev
 ENV TZ=America/Los_Angeles
 RUN sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
-RUN sudo pip install pre-commit
+RUN sudo pip install pre-commit pylint

@@ -1,24 +1,18 @@
 repos:
     - repo: https://github.com/psf/black
-      rev: 19.10b0
+      rev: 21.11b1
       hooks:
         - id: black
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v2.5.0
+      rev: v4.0.1
       hooks:
         - id: check-added-large-files
-    - repo: local
+    - repo: https://github.com/pycqa/pylint
+      rev: pylint-2.6.0
       hooks:
         - id: pylint
-          name: pylint
-          entry: poetry run pylint app/
-          language: system
-          always_run: true
-          pass_filenames: false
-        - id: create requirements
-          name: create requirements
-          entry: sh write_requirements.sh
-          language: system
-          always_run: true
-          pass_filenames: false
+          args: 
+            - --max-line-length=80
+            - --ignore-imports=yes
+            - -d duplicate-code
           
