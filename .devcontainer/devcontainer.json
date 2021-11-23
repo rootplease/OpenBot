@@ -1,0 +1,19 @@
+{
+    "name": "OpenBot",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "ubuntu",
+    "workspaceFolder": "/workspace",
+    "extensions": [
+        "ms-python.python",
+        "eamodio.gitlens"
+    ],
+    "forwardPorts": [443,80],
+    "settings": {
+        "editor.tabSize": 4,
+        "files.eol": "\n",
+        "git.postCommitCommand": "push"
+      },
+      "postCreateCommand": "bash -i /workspace/.devcontainer/postCommands.sh",
+      "remoteUser": "dev"      
+  }
+2
