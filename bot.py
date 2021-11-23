@@ -1,6 +1,7 @@
 """
 Bot Class
 """
+import datetime
 from twitchio.ext import commands
 from config.config_manager import (
     load_oauth_config,
@@ -46,3 +47,24 @@ class Bot(commands.Bot):
         Command to respond hi to user
         """
         await ctx.send(f"{self.bot_name} {self.bot_version}!")
+
+    @commands.command()
+    async def uptime(self, ctx: commands.Context):
+        """
+        Command to print stream uptime
+        """
+        stream_info = await self.fetch_streams(None, None, ["accountsbroke"])
+        stream_time = stream_info[0].started_at
+        start_time = stream_time.replace(tzinfo=None)
+        current_time = datetime.datetime.now()
+        time_difference = (current_time - start_time).seconds
+        days = divmod(time_difference, 86400)
+        hours = divmod(days[1], 3600)
+        minutes = divmod(hours[1], 60)
+        time_string = f"""
+            {days[0]} days, 
+            {hours[0]} hours, 
+            {minutes[0]} minutes, 
+            {minutes[1]} seconds
+        """
+        await ctx.send(f"Uptime: {time_string}!")
